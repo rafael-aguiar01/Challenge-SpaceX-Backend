@@ -1,11 +1,13 @@
 import { LoadRocketsFromApi } from './loadRocketsFromApiData'
+import env from '../main/config/env'
 
-const link = 'https://api.spacexdata.com/v4/rockets'
+const rocketsLink = env.rocketsLink
 
 describe('Load Rockets From Api', () => {
   test('Should return 200 if load data success', async () => {
     const sut = new LoadRocketsFromApi()
-    const launches = await sut.getRockets(link)
-    expect(launches.status).toBe(200)
+    const rockets = await sut.getRockets(rocketsLink)
+    console.log(rockets)
+    expect(rockets.status).toBe(200)
   })
 })
