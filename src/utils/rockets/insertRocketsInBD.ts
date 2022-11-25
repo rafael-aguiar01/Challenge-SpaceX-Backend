@@ -9,12 +9,11 @@ export class InsertRocketsInDB {
     const rocketMongoRepository = new RocketMongoRepository()
 
     // Checar se os dados estão atulizados
-
     const rockets = await loadRocketsFromAPI.getRockets(rocketsLink)
     rockets.forEach(async (rocketItem) => {
-      const rocketAlreadyExists = await rocketMongoRepository.findOne('12345453243')
+      const rocketAlreadyExists = await rocketMongoRepository.findOne(rocketItem.id)
       if (rocketAlreadyExists) {
-        console.log('Foguete já existe')
+        console.log('RocketAlreadyExists')
       } else {
         await rocketMongoRepository.add(rocketItem)
       }
