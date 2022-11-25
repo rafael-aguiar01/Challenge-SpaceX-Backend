@@ -48,4 +48,10 @@ describe('Rocket Mongo Repository', () => {
     expect(rocket).toBeTruthy()
     expect(rocket.name).toBe('valid_name')
   })
+
+  test('Should check if rocket already exists', async () => {
+    const sut = makeSut()
+    const rocket = await sut.findOne('136127638721632')
+    expect(rocket).toBeNull()
+  })
 })
