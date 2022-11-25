@@ -46,6 +46,6 @@ describe('Rocket Mongo Repository', () => {
       id: '136127638721632'
     })
     expect(rocket).toBeTruthy()
-    expect(rocket.id).toBe('136127638721632')
+    expect(rocket.name).toBe('valid_name')
   })
 })
