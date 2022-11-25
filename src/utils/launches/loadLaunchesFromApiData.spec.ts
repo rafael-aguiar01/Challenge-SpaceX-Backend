@@ -7,6 +7,6 @@ describe('Load Launches From Api', () => {
   test('Should return 200 if load data success', async () => {
     const sut = new LoadLaunchesFromApi()
     const launches = await sut.getLaunches(launchesLink)
-    expect(launches.status).toBe(200)
+    expect(launches).toBeTruthy()
   })
 })
