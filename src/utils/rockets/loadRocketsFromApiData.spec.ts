@@ -1,5 +1,5 @@
 import { LoadRocketsFromApi } from './loadRocketsFromApiData'
-import env from '../main/config/env'
+import env from '../../main/config/env'
 
 const rocketsLink = env.rocketsLink
 

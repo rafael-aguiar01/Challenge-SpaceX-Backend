@@ -1,5 +1,5 @@
 import { LoadLaunchesFromApi } from './loadLaunchesFromApiData'
-import env from '../main/config/env'
+import env from '../../main/config/env'
 
 const launchesLink = env.launchesLink
 
