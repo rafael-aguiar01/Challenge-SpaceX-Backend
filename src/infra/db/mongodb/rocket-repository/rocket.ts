@@ -10,15 +10,9 @@ export class RocketMongoRepository implements AddRocketRepository {
     return MongoHelper.map(result.ops[0])
   }
 
-  async findOne (rocketData: AddRocketModel): Promise<any> {
+  async findOne (rocketId: string): Promise<any> {
     const rocketCollection = await MongoHelper.getCollection('rockets')
-    const result = await rocketCollection.findOne(
-      {
-        $or: [
-          { id: rocketData.id }
-        ]
-      }
-    )
+    const result = await rocketCollection.findOne({ id: rocketId })
     return result
   }
 }
