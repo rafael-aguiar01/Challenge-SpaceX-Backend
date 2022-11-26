@@ -1,4 +1,4 @@
-import { LoadLaunchesFromApi } from './loadLaunchesFromApiData'
+import { LoadLaunchesFromApi } from './load-launches-from-api-data'
 import { LaunchMongoRepository } from '../../infra/db/mongodb/launch-repository/lauch'
 import env from '../../main/config/env'
 

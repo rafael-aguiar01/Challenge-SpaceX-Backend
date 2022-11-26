@@ -1,4 +1,4 @@
-import { InsertLaunchsInDB } from '../../utils/launches/insertLaunchesInBD'
+import { InsertLaunchsInDB } from '../launches/insert-launches-in-db'
 import cron = require('node-cron')
 
 async function InsertLaunches (): Promise<void>{

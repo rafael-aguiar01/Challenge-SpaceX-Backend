@@ -1,5 +1,5 @@
-import insertLaunches = require('./insertLaunches')
-import insertRockets = require('./insertRockets')
+import insertLaunches = require('./insert-launches')
+import insertRockets = require('./insert-rockets')
 
 export class ManagerCron {
   private readonly jobs

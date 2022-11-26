@@ -1,4 +1,4 @@
-import { LoadLaunchesFromApi } from './loadLaunchesFromApiData'
+import { LoadLaunchesFromApi } from './load-launches-from-api-data'
 import env from '../../main/config/env'
 
 const launchesLink = env.launchesLink
