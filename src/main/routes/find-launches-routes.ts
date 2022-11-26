@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { makeLoadLaunchesController } from '../factories/load-launches'
+import { makeFindLaunchesController } from '../factories/find-launches'
 import { adaptRoute } from '../adapters/express-route-adapter'
 
 export default (router: Router): void => {
-  router.get('/launches', adaptRoute(makeLoadLaunchesController()))
+  router.get('/launches', adaptRoute(makeFindLaunchesController()))
 }
