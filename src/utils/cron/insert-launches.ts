@@ -6,6 +6,6 @@ async function InsertLaunches (): Promise<void>{
   await insertLaunchesInBD.run()
 }
 
-module.exports = cron.schedule('0 0 9 1/1 * ? *', InsertLaunches, {
+module.exports = cron.schedule('00 00 09 * * *', InsertLaunches, {
   scheduled: false
 })

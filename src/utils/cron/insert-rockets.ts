@@ -7,6 +7,6 @@ async function InsertRockets (): Promise<void>{
   await insertRocketsInBD.run()
 }
 
-module.exports = cron.schedule('0 0 9 1/1 * ? *', InsertRockets, {
+module.exports = cron.schedule('00 00 09 * * *', InsertRockets, {
   scheduled: false
 })
