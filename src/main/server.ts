@@ -1,5 +1,5 @@
 import { MongoHelper } from '../infra/db/mongodb/helpers/mongo-helper'
-import { ManagerCron } from '../utils/cron/managerCron'
+import { ManagerCron } from '../utils/cron/manager-cron'
 
 import app from './config/app'
 import env from './config/env'
