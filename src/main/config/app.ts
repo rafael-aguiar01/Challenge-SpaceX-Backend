@@ -1,8 +1,10 @@
 import express from 'express'
+import setupMiddlewares from './middlewares'
+import setupRoutes from './routes'
+
 const app = express()
 
-app.get('/', async (req, res) => {
-  res.json({ message: 'Fullstack Challenge 🏅 - Space X API' })
-})
+setupMiddlewares(app)
+setupRoutes(app)
 
 export default app
