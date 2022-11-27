@@ -16,12 +16,12 @@ export interface LaunchModel {
   launchpad: string
   flight_number: number
   name: string
-  date_utc: string
+  date_utc: Date
   date_unix: string
   date_local: string
   date_precision: string
   upcoming: boolean
-  cores: object[]
+  cores: {}
   auto_update: boolean
   tbd: boolean
   launch_library_id: any
