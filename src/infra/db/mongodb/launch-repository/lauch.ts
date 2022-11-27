@@ -18,7 +18,7 @@ export class LaunchMongoRepository implements AddLaunchRepository {
     return result
   }
 
-  async find (conditions: FindConditionsModel): Promise<ResultLaunchPageModel> {
+  async findByPage (conditions: FindConditionsModel): Promise<ResultLaunchPageModel> {
     const page = Number(conditions.page) || 0
     const launchesPerPage = Number(conditions.limit)
     const search = conditions.search

@@ -5,5 +5,5 @@ import { FindConditionsModel } from '../../domain/usecases/find-launch'
 
 export interface AddLaunchRepository {
   add (launchData: AddLaunchModel): Promise<LaunchModel>
-  find (conditions: FindConditionsModel): Promise<ResultLaunchPageModel>
+  findByPage (conditions: FindConditionsModel): Promise<ResultLaunchPageModel>
 }
