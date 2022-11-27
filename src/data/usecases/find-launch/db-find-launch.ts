@@ -7,4 +7,10 @@ export class DbFindLaunch implements FindLaunch {
 
     return launchesResult
   }
+
+  async findAll (): Promise<any> {
+    const launchesResult = await this.findAll()
+
+    return launchesResult
+  }
 }

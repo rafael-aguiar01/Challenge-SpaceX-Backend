@@ -8,4 +8,5 @@ export interface FindConditionsModel {
 
 export interface FindLaunch {
   findByPage (conditions: FindConditionsModel): Promise<ResultLaunchPageModel>
+  findAll (): Promise<any>
 }
