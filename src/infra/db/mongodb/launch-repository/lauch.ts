@@ -8,7 +8,13 @@ import { MongoHelper } from '../helpers/mongo-helper'
 export class LaunchMongoRepository implements AddLaunchRepository {
   async add (launchData: AddLaunchModel): Promise<LaunchModel> {
     const launchCollection = await MongoHelper.getCollection('launches')
-
+    const rocketCollection = await MongoHelper.getCollection('rockets')
+    const rocket = await rocketCollection.findOne({ id: launchData.rocket })
+    let newName = rocket.name
+    if (launchData.cores[0].reused) {
+      newName = String(rocket.name) + ' Reused'
+    }
+    launchData.rocket = newName
     const result = await launchCollection.insertOne(launchData)
     return MongoHelper.map(result.ops[0])
   }
