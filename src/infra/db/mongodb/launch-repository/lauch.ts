@@ -8,6 +8,7 @@ import { MongoHelper } from '../helpers/mongo-helper'
 export class LaunchMongoRepository implements AddLaunchRepository {
   async add (launchData: AddLaunchModel): Promise<LaunchModel> {
     const launchCollection = await MongoHelper.getCollection('launches')
+
     const result = await launchCollection.insertOne(launchData)
     return MongoHelper.map(result.ops[0])
   }
@@ -61,20 +62,47 @@ export class LaunchMongoRepository implements AddLaunchRepository {
     let successCount = 0
     let failureCount = 0
 
-    await launchCollection.find({}).forEach(async (launch) => {
-      console.log(launch.success)
+    await launchCollection.find({}).forEach((launch) => {
       if (launch.success) {
         successCount++
       } else {
         failureCount++
       }
     })
-
-    console.log('Esse é a quantidade de sucessos: ', successCount, '/ Essa é a quantidade de falhas: ', failureCount)
-
-    // Contar todos os casos de falha e sucesso
-    // Contar os foguetes reutilizados
-    // Contar a quantidade de lançamentos separados por foguete por mes/ano
-    return { }
+    const result = await launchCollection.aggregate([
+      {
+        $group: {
+          _id: '$rocket',
+          count: {
+            $sum: 1
+          }
+        }
+      }
+    ]).toArray()
+    result.forEach(async (rocket) => {
+      const resultByDate = await launchCollection.aggregate([
+        { $match: { rocket: rocket._id } },
+        {
+          $group: {
+            _id: {
+              ano: {
+                $year: {
+                  $dateFromString: {
+                    dateString: '$date_utc'
+                  }
+                }
+              }
+            },
+            total: { $sum: 1 }
+          }
+        }
+      ]).toArray()
+      console.log(resultByDate)
+    })
+    return {
+      successCount,
+      failureCount,
+      result
+    }
   }
 }
