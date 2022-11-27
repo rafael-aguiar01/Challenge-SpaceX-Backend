@@ -1,4 +1,4 @@
-import { LaunchModel } from '../models/launch'
+import { ResultLaunchPageModel } from '../models/resultLaunchPage'
 
 export interface FindConditionsModel {
   search: string
@@ -7,5 +7,5 @@ export interface FindConditionsModel {
 }
 
 export interface FindLaunch {
-  find (conditions: FindConditionsModel): Promise<LaunchModel>
+  find (conditions: FindConditionsModel): Promise<ResultLaunchPageModel>
 }
