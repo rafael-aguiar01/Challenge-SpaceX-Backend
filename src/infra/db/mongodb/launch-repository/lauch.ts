@@ -38,7 +38,7 @@ export class LaunchMongoRepository implements AddLaunchRepository {
       .skip(page * launchesPerPage)
 
     const results = await cursor.toArray()
-    const totalPages = totalDocs / launchesPerPage
+    const totalPages = Math.round(totalDocs / launchesPerPage)
     if (page < totalPages){
       hasNext = true
     }
