@@ -55,4 +55,11 @@ export class LaunchMongoRepository implements AddLaunchRepository {
       hasPrev
     }
   }
+
+  async findAll (): Promise<any> {
+  // Contar todos os casos de falha e sucesso
+  // Contar os foguetes reutilizados
+  // Contar a quantidade de lançamentos separados por foguete por mes/ano
+    throw new Error('Method not implemented.')
+  }
 }
