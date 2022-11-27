@@ -18,12 +18,16 @@ export class LaunchMongoRepository implements AddLaunchRepository {
   }
 
   async find (conditions: FindConditionsModel): Promise<LaunchModel> {
+    const page = conditions.page || 0
+    const launchesPerPage = Number(conditions.limit)
+    const search = conditions.search
+
     const launchCollection = await MongoHelper.getCollection('launches')
-    // const { search } = conditions
-    // eslint-disable-next-line quote-props
-    const result = await launchCollection.find({ 'name': 'FalconSat' }).pretty()
-    console.log('ESSE É O RESULT')
-    console.log(result)
-    return result
+    const cursor = await launchCollection.find({
+      name: { $regex: `(?i)^${search}` }
+    }).limit(launchesPerPage).skip(page * launchesPerPage)
+    const allLaunches = await cursor.toArray()
+    console.log(allLaunches.length)
+    return allLaunches
   }
 }
