@@ -1,9 +1,9 @@
-import { LaunchModel } from '../../../domain/models/launch'
+import { ResultLaunchPageModel } from '../../../domain/models/resultLaunchPage'
 import { FindConditionsModel, FindLaunch } from '../../../domain/usecases/find-launch'
 
 export class DbFindLaunch implements FindLaunch {
-  async find (conditions: FindConditionsModel): Promise<LaunchModel> {
-    const launchesResult = await this.find(conditions)
+  async findByPage (conditions: FindConditionsModel): Promise<ResultLaunchPageModel> {
+    const launchesResult = await this.findByPage(conditions)
 
     return launchesResult
   }

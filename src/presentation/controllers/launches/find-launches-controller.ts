@@ -13,7 +13,7 @@ export class FindLaunchesController implements Controller {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const { search, limit, page } = httpRequest.query
-      const launches = await this.findLaunch.find({ search, limit, page })
+      const launches = await this.findLaunch.findByPage({ search, limit, page })
       return ok(launches)
     } catch (error) {
       return serverError(error)
