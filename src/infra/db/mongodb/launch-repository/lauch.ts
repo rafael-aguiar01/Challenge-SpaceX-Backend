@@ -57,9 +57,24 @@ export class LaunchMongoRepository implements AddLaunchRepository {
   }
 
   async findAll (): Promise<any> {
-  // Contar todos os casos de falha e sucesso
-  // Contar os foguetes reutilizados
-  // Contar a quantidade de lançamentos separados por foguete por mes/ano
-    throw new Error('Method not implemented.')
+    const launchCollection = await MongoHelper.getCollection('launches')
+    let successCount = 0
+    let failureCount = 0
+
+    await launchCollection.find({}).forEach(async (launch) => {
+      console.log(launch.success)
+      if (launch.success) {
+        successCount++
+      } else {
+        failureCount++
+      }
+    })
+
+    console.log('Esse é a quantidade de sucessos: ', successCount, '/ Essa é a quantidade de falhas: ', failureCount)
+
+    // Contar todos os casos de falha e sucesso
+    // Contar os foguetes reutilizados
+    // Contar a quantidade de lançamentos separados por foguete por mes/ano
+    return { }
   }
 }
