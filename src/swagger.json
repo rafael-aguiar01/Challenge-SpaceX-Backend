@@ -35,6 +35,12 @@
             }
           }
         }
+      },
+      "/launches": {
+        "get":{
+          "summary": "Return all launches of SpaceX"
+        }
       }
+
     }
   }
