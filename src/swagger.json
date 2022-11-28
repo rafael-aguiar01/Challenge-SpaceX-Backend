@@ -1,0 +1,40 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Challenge SpaceX API",
+      "description": "This API load launches and rockets. @Challenge by Coodesh",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Return challenge message",
+          "tags": ["CHALLENGE"],
+          "responses": {
+            "200": {
+              "description": "Return challenge message",
+              "content": {
+                "application/json": {
+                  "schema":{
+                    "type":"json",
+                    "properties":{
+                        "message":{
+                            "type": "string"
+                        }
+                    }
+                },
+                  "examples": {
+                    "GetMessage": {
+                      "value": {
+                        "message": "Fullstack Challenge 🏅 - Space X API"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
