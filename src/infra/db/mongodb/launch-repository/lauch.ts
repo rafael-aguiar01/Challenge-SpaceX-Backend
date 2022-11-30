@@ -67,6 +67,7 @@ export class LaunchMongoRepository implements AddLaunchRepository {
     const launchCollection = await MongoHelper.getCollection('launches')
     let successCount = 0
     let failureCount = 0
+    const resultAll = await launchCollection.find({}).toArray()
 
     await launchCollection.find({}).forEach((launch) => {
       if (launch.success) {
@@ -75,7 +76,7 @@ export class LaunchMongoRepository implements AddLaunchRepository {
         failureCount++
       }
     })
-    const result = await launchCollection.aggregate([
+    const resultByRocket = await launchCollection.aggregate([
       {
         $group: {
           _id: '$rocket',
@@ -85,30 +86,30 @@ export class LaunchMongoRepository implements AddLaunchRepository {
         }
       }
     ]).toArray()
-    result.forEach(async (rocket) => {
-      const resultByDate = await launchCollection.aggregate([
-        { $match: { rocket: rocket._id } },
-        {
-          $group: {
-            _id: {
-              ano: {
-                $year: {
-                  $dateFromString: {
-                    dateString: '$date_utc'
-                  }
+
+    const resultByDate = await launchCollection.aggregate([
+      {
+        $group: {
+          _id: {
+            ano: {
+              $year: {
+                $dateFromString: {
+                  dateString: '$date_utc'
                 }
               }
-            },
-            total: { $sum: 1 }
-          }
+            }
+          },
+          total: { $sum: 1 }
         }
-      ]).toArray()
-      console.log(resultByDate)
-    })
+      }
+    ]).toArray()
+
     return {
+      resultAll,
       successCount,
       failureCount,
-      result
+      resultByRocket,
+      resultByDate
     }
   }
 }
